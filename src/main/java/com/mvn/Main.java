@@ -1,31 +1,40 @@
 package com.mvn;
 
+import java.util.Scanner;
+
 import com.mvn.StringCalculator.StrCalculator;
 
 public class Main {
     public static void main(String[] args) {
         StrCalculator calculator = new StrCalculator();
+        Scanner scanner = new Scanner(System.in);
 
-        // Demo the String Calculator
-        try {
-            System.out.println("String Calculator Demo:");
-            System.out.println("Empty string: " + calculator.add(""));
-            System.out.println("Single number: " + calculator.add("1"));
-            System.out.println("Two numbers: " + calculator.add("1,2"));
-            System.out.println("Multiple numbers: " + calculator.add("1,2,3,4,5"));
-            System.out.println("New line delimiter: " + calculator.add("1\n2,3"));
-            System.out.println("Custom delimiter: " + calculator.add("//;\n1;2"));
-            System.out.println("For specialcharacter" + calculator.add("67*7"));
-        } catch (RuntimeException e) {
-            System.out.println("Exception caught during demo: " + e.getMessage());
+        System.out.println("Welcome to the String Calculator!");
+        System.out.println("=== String Calculator ===");
+        System.out.println("Enter input as a string (e.g., \"1,2,3\" or \"//;\n1;2\")");
+        System.out.println("Type 'exit' to quit.");
+
+        while (true) {
+            System.out.print("\nEnter your string: ");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Goodbye!");
+                break;
+            }
+
+            try {
+                int result = calculator.add(input);
+                System.out.println("Result: " + result);
+            } catch (RuntimeException e) {
+                System.out.println("Error occurred while processing input: \"" + input + "\"");
+                System.out.println("Reason: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Unexpected error for input: \"" + input + "\"");
+                System.out.println("Reason: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            }
         }
 
-        // Example of handling negative numbers
-        // This will throw an exception for negative numbers
-        try {
-            calculator.add("1,-2,3");
-        } catch (RuntimeException e) {
-            System.out.println("Exception caught: " + e.getMessage());
-        }
+        scanner.close();
     }
 }
