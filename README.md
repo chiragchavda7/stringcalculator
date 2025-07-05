@@ -12,7 +12,7 @@ A simple Java program built with Test-Driven Development principles. It reads a 
 
 ## Example
 
-* Input: \`"2,3,100"
+* Input: \`"2,3,100"`
 * Output: `105`
 
 This project follows a TDD cycle: write a failing test first, implement the minimal code to pass it, refactor, and repeat. It’s a great way to learn clean, reliable development!
